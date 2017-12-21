@@ -12,6 +12,8 @@
 */
 
 Route::get('/', function () {
-    $user = \App\User::find(1);
-    Mail::to($user->email)->send(new \App\Mail\Welcome($user));
+    $user = \App\User::find(2);
+    $post = \App\Post::find(4);
+
+    $user->notify(new \App\Notifications\PostPublished($post));
 });

@@ -16,3 +16,7 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 });
+
+Artisan::command('hello {name?}', function () {
+    $this->comment('Hey boy! '.$this->argument('name'));
+});

@@ -2,25 +2,24 @@
 
 namespace App\Notifications;
 
-use App\Post;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PostPublished extends Notification
+class UserSubscribe extends Notification
 {
     use Queueable;
 
-    public $post;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct()
     {
-        $this->post = $post;
+        //
     }
 
     /**
@@ -34,24 +33,7 @@ class PostPublished extends Notification
         return ['database'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-//    public function toMail($notifiable)
-//    {
-//        return (new MailMessage)
-//                    ->line('The introduction to the notification.')
-//                    ->action('Notification Action', 'https://laravel.com')
-//                    ->line('Thank you for using our application!');
-//    }
 
-//    public function toDatabase()
-//    {
-//
-//    }
 
     /**
      * Get the array representation of the notification.
@@ -61,6 +43,8 @@ class PostPublished extends Notification
      */
     public function toArray($notifiable)
     {
-        return $this->post->toArray();
+        return [
+            'subscribed_at' => Carbon::now()
+        ];
     }
 }

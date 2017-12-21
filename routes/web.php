@@ -11,9 +11,12 @@
 |
 */
 
+Auth::loginUsingId(2);
 Route::get('/', function () {
-    $user = \App\User::find(2);
-    $post = \App\Post::find(4);
+    return Auth::user()->notifications;
+});
 
-    $user->notify(new \App\Notifications\PostPublished($post));
+Route::delete('user/notification', function (){
+    Auth::user()->unreadNotifications->markAsRead();
+    return redirect()->back();
 });

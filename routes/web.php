@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function () {
-    $users = \App\User::paginate(5);
-    return view('welcome', compact('users'));
+    $user = \App\User::find(1);
+    Mail::to($user->email)->send(new \App\Mail\Welcome($user));
 });

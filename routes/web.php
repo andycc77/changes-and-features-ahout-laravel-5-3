@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function () {
-    $users = \App\User::all();
+    $users = \App\User::paginate(5);
     return view('welcome', compact('users'));
 });

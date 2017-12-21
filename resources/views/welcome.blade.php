@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link rel="stylesheet" href="/css/app.css">
         <!-- Styles -->
         <style>
             html, body {
@@ -70,6 +70,7 @@
                 @foreach($users as $user)
                     <li>{{$loop->first ? 'First' : ''}} {{$user->name}}</li>
                 @endforeach
+                {{ $users->links() }}
             </ul>
         </div>
     </body>
